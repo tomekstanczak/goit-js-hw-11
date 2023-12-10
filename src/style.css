@@ -4,7 +4,15 @@ body {
   padding: 0;
   max-width: 1400px;
 }
-
+.search-form {
+  padding: 15 0 15 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+input {
+  padding: 10px 15px 10px 15px;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;
