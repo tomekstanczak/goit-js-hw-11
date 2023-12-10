@@ -18,7 +18,7 @@ hiddenElement.style.display = 'none';
 
 function picture() {
   return axios.get(
-    `/?key=${keyAuthorization}q=${searchValue}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`
+    `/?key=${keyAuthorization}&q=${searchValue}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`
   );
 }
 function cleaningSearchingGallery() {
@@ -58,7 +58,7 @@ function resaults(response) {
     );
   }
   if (searchHits <= page * perPage) {
-    moreBtn.style.display = 'none';
+    hiddenElement.style.display = 'none';
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
