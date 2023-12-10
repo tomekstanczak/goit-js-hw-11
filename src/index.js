@@ -36,7 +36,7 @@ function resaults(response) {
   console.log(searchHits);
   for (let i = 0; i < searchHits; i++) {
     if (searchResponse.hits[i]) {
-      hiddenElement.style.display = 'block';
+      hiddenElement.style.display = 'flex';
       console.log(searchHits);
       gallery.insertAdjacentHTML(
         'beforeend',

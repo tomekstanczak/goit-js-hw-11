@@ -1,14 +1,16 @@
 body {
-  background-color: #747373;
+  background-color: #715da1;
   margin: 0;
   padding: 0;
-  max-width: 1400px;
+  max-width: auto;
 }
 .search-form {
   padding: 15 0 15 0;
   display: flex;
   justify-content: center;
   gap: 15px;
+  background-color: #392b5a;
+  margin-bottom: 20px;
 }
 input {
   padding: 10px 15px 10px 15px;
@@ -23,16 +25,26 @@ input {
   background-color: #ececec;
   border: 1px solid black;
   width: 325px;
-  height: 250px;
+  height: 275px;
   display: block;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
 .pictures {
-  max-width: 200px;
-  max-height: 200px;
+  width: 325px;
+  height: 200px;
 }
 .info {
+  padding: 5 10 5;
   display: flex;
   justify-content: center;
   gap: 15px;
   align-items: center;
+}
+.more-hidden {
+  padding: 15 0 15 0;
+  justify-content: center;
+}
+
+.more-resaults {
+  padding: 10px 15px 10px 15px;
 }
