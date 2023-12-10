@@ -34,7 +34,7 @@ input {
   height: 200px;
 }
 .info {
-  padding: 5 10 5;
+  padding: 0 5 10 5;
   display: flex;
   justify-content: center;
   gap: 15px;

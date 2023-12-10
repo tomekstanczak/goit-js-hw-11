@@ -16,10 +16,17 @@ const keyAuthorization = '41134158-d3e94c46577e61eb60875764f&';
 
 hiddenElement.style.display = 'none';
 
-function picture() {
-  return axios.get(
-    `/?key=${keyAuthorization}&q=${searchValue}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`
-  );
+async function picture() {
+  try {
+    const response = await axios.get(
+      `/?key=${keyAuthorization}&q=${searchValue}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`
+    );
+    return response;
+  } catch (error) {
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+  }
 }
 function cleaningSearchingGallery() {
   let pictures;
