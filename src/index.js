@@ -35,10 +35,12 @@ function resaults(response) {
   searchHits = searchResponse.totalHits;
   console.log(searchHits);
   for (let i = 0; i < searchHits; i++) {
-    console.log(searchHits);
-    gallery.insertAdjacentHTML(
-      'beforeend',
-      `<div class="photo-card">
+    if (searchResponse.hits[i]) {
+      hiddenElement.style.display = 'block';
+      console.log(searchHits);
+      gallery.insertAdjacentHTML(
+        'beforeend',
+        `<div class="photo-card">
     <img src="${searchResponse.hits[i].webformatURL}" alt="${searchResponse.hits[i].tags}" class="pictures" loading="lazy">
     </img>
       <div class="info">
@@ -55,9 +57,16 @@ function resaults(response) {
     </p>
   </div>
   </div>`
-    );
+      );
+    }
   }
   if (searchHits <= page * perPage) {
+    hiddenElement.style.display = 'none';
+    Notiflix.Notify.info(
+      "We're sorry, but you've reached the end of search results."
+    );
+  }
+  if (searchHits === page * perPage) {
     hiddenElement.style.display = 'none';
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
@@ -73,6 +82,7 @@ more.addEventListener('click', e => {
       resaults(response);
     })
     .catch(error => {
+      console.log(error);
       Notiflix.Notify.info(
         'Sorry, there are no images matching your search query. Please try again.'
       );
@@ -94,6 +104,7 @@ search.addEventListener('click', event => {
       resaults(response);
     })
     .catch(error => {
+      console.log(error);
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
