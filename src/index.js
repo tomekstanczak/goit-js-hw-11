@@ -16,6 +16,10 @@ const keyAuthorization = '41134158-d3e94c46577e61eb60875764f&';
 
 hiddenElement.style.display = 'none';
 
+function cleaningSearchingGallery() {
+  gallery.innerHTML = '';
+}
+
 async function picture() {
   try {
     const response = await axios.get(
@@ -26,14 +30,6 @@ async function picture() {
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
-  }
-}
-function cleaningSearchingGallery() {
-  let pictures;
-  if ((pictures = document.querySelector('.pictures')) !== null) {
-    gallery.innerHTML = '';
-  } else {
-    console.log('It is working');
   }
 }
 
@@ -81,22 +77,20 @@ function resaults(response) {
   }
 }
 
-more.addEventListener('click', e => {
+more.addEventListener('click', async e => {
   e.preventDefault();
   page += 1;
-  picture(searchValue, page, perPage)
-    .then(response => {
-      resaults(response);
-    })
-    .catch(error => {
-      console.log(error);
-      Notiflix.Notify.info(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
-    })
-    .finally(() => {
-      console.log('Done');
-    });
+  try {
+    const response = await picture(searchValue, page, perPage);
+    resaults(response);
+  } catch (error) {
+    console.log(error);
+    Notiflix.Notify.info(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+  } finally {
+    console.log('Done');
+  }
 });
 
 input.addEventListener('input', ev => {
@@ -106,6 +100,7 @@ input.addEventListener('input', ev => {
 search.addEventListener('click', event => {
   event.preventDefault();
   cleaningSearchingGallery();
+  page = 1;
   picture(searchValue, page, perPage)
     .then(response => {
       resaults(response);
